@@ -1,0 +1,129 @@
+using System;
+using System.Globalization;
+
+namespace Ex_EstruturasSequencial
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int opcao = 0;
+            int n1 = 0;
+            int n2 = 0;
+            int n3 = 0;
+            int n4 = 0;
+            int resultado = 0;
+            double raio = 0.0;
+            double area = 0.0;
+            int codFuncionario = 0, hrsTrabalhadas = 0;
+            double vlrHora = 0.0, salario = 0.0;
+            int codPc1 = 0, codPc2 = 0;
+            int qtdPc1 = 0, qtdPc2 = 0;
+            double vlrUnitPc1 = 0.0, vlrUnitPc2 = 0.0, total = 0.0;
+            double a = 0.0, b = 0.0, c = 0.0;
+
+
+            try
+            {
+                do
+                {
+                    Console.WriteLine("\nMENU");
+                    Console.WriteLine("-------------------------");
+                    Console.WriteLine("0 - Sair");
+                    Console.WriteLine("1 - SOMA");
+                    Console.WriteLine("2 - ÁREA CÍRCULO");
+                    Console.WriteLine("3 - DIFERENÇA (A*B-C*D)");
+                    Console.WriteLine("4 - SALÁRIO");
+                    Console.WriteLine("5 - COMPRA");
+                    Console.WriteLine("6 - PONTO FLUTUANTE");
+                    Console.Write("\nDigite a opção desejada: ");
+                    opcao = int.Parse(Console.ReadLine());
+
+                    switch (opcao)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            Console.WriteLine("\n<<SOMA>>");
+                            Console.Write("Digite o primeiro valor inteiro: ");
+                            n1 = int.Parse(Console.ReadLine());
+                            Console.Write("Digite o segundo valor inteiro: ");
+                            n2 = int.Parse(Console.ReadLine());
+                            resultado = n1 + n2;
+                            Console.WriteLine("SOMA = " + resultado);
+                            break;
+                        case 2:
+                            Console.WriteLine("\n<<ÁREA CÍRCULO>>");
+                            Console.Write("Digite o raio do círculo: ");
+                            raio = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                            area = Math.PI * Math.Pow(raio, 2);
+                            //deixar o pi com apenas 5 casas decimais
+                            Console.WriteLine("A=" + area.ToString("F4"));
+                            break;
+                        case 3:
+                            Console.WriteLine("\n<<Diferença de Produtos>>");
+                            Console.Write("Digite o valor de A: ");
+                            n1 = int.Parse(Console.ReadLine());
+                            Console.Write("Digite o valor de B: ");
+                            n2 = int.Parse(Console.ReadLine());
+                            Console.Write("Digite o valor de C: ");
+                            n3 = int.Parse(Console.ReadLine());
+                            Console.Write("Digite o valor de D: ");
+                            n4 = int.Parse(Console.ReadLine());
+                            resultado = n1 * n2 - n3 * n4;
+                            Console.WriteLine("DIFERENCA = " + resultado);                           
+                            break;
+                        case 4:
+                            Console.WriteLine("\n<<SALÁRIO>>");
+                            Console.Write("Digite o código do funcionário: ");
+                            codFuncionario = int.Parse(Console.ReadLine());
+                            Console.Write("Digite a quantidade de horas trabalhadas: ");
+                            hrsTrabalhadas = int.Parse(Console.ReadLine());
+                            Console.Write("Digite o valor da hora: ");
+                            vlrHora = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                            salario = hrsTrabalhadas * vlrHora;
+                            Console.WriteLine("NUMBER: " + codFuncionario + "\nSALARY: U$ " + salario.ToString("F2", CultureInfo.InvariantCulture));
+                            break;
+                        case 5:
+                            Console.WriteLine("\n<<COMPRA>>");
+                            Console.Write("Digite o código, quantidade e valor unitário da peça 1: ");
+                            string[] vet1 = Console.ReadLine().Split(' ');
+                            codPc1 = int.Parse(vet1[0]);
+                            qtdPc1 = int.Parse(vet1[1]);
+                            vlrUnitPc1 = double.Parse(vet1[2], CultureInfo.InvariantCulture);
+                            Console.Write("Digite o código, quantidade e valor unitário da peça 2: ");
+                            string[] vet2 = Console.ReadLine().Split(' ');
+                            codPc2 = int.Parse(vet2[0]);
+                            qtdPc2 = int.Parse(vet2[1]);
+                            vlrUnitPc2 = double.Parse(vet2[2], CultureInfo.InvariantCulture);
+                            Console.WriteLine("----------------------------");
+                            total = (qtdPc1 * vlrUnitPc1) + (qtdPc2 * vlrUnitPc2);
+                            Console.WriteLine("VALOR A PAGAR: R$ " + total.ToString("F2", CultureInfo.InvariantCulture));
+                            break;
+                        case 6:
+                            Console.Write("Digite três valores com ponto flutuante de dupla: ");
+                            string[] vet = Console.ReadLine().Split(' ');
+                            a = double.Parse(vet[0], CultureInfo.InvariantCulture);
+                            b = double.Parse(vet[1], CultureInfo.InvariantCulture);
+                            c = double.Parse(vet[2], CultureInfo.InvariantCulture);
+                            Console.WriteLine("TRIANGULO: " + ((a*c)/2).ToString("F3", CultureInfo.InvariantCulture));
+                            Console.WriteLine("CIRCULO: " + (Math.PI * Math.Pow(c,2)).ToString("F3", CultureInfo.InvariantCulture));
+                            Console.WriteLine("TRAPEZIO: " + (((a + b)*c)/2).ToString("F3", CultureInfo.InvariantCulture));
+                            Console.WriteLine("QUADRADO: " + (Math.Pow(b,2).ToString("F3", CultureInfo.InvariantCulture)));
+                            Console.WriteLine("RETANGULO: " + (a*b).ToString("F3", CultureInfo.InvariantCulture));
+                            break;
+                        default:
+                            Console.WriteLine("Opção inválida!");
+                            break;
+                    }
+
+                } while (opcao > 0);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\nErro: "+e.Message+"\n");
+            }
+
+        }
+    }
+}
